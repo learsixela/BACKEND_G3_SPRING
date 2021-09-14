@@ -68,6 +68,6 @@ public class EmpleadoController {
 	
 	@RequestMapping("/buscar")
 	public String buxcar() {
-		return "empleado.jsp";
+		return "redirect:/empleado";
 	}
 }

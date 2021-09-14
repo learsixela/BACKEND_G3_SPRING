@@ -65,7 +65,7 @@
 							<input type="submit" value="Eliminar">
 						</form>
 				
-						<form action="/empleado/eliminar2/${empleado.id}" method="get">
+						<form action="/empleado/eliminar2/${empleado.id}" method="POST">
 							<input type="hidden" name="_method" value="delete" >
 							<input type="submit" value="Eliminar">
 						</form>
