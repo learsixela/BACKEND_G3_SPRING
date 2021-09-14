@@ -45,18 +45,32 @@
 					<th>Edad</th>
 					<th>Profesion</th>
 					<th>Cargo</th>
+					<th>Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="empleado" items="${lista_empleados}" >
 				<tr>
-					<td> </td>
+					<td><c:out value="${empleado.id}" /> </td>
 					<td><c:out value="${empleado.rut}" /> </td>
 					<td><c:out value="${empleado.nombre}" /> </td>
 					<td><c:out value="${empleado.apellido}" /> </td>
 					<td><c:out value="${empleado.edad}" /> </td>
 					<td><c:out value="${empleado.profesion}" /> </td>
 					<td><c:out value="${empleado.cargo}" /> </td>
+					<td>
+						<a href="/empleado/actualizar/${empleado.id}">Editar</a>
+						<form action="/empleado/eliminar" method="POST">
+							<input type="hidden" name="id" value="<c:out value="${empleado.id}" />" >
+							<input type="submit" value="Eliminar">
+						</form>
+				
+						<form action="/empleado/eliminar2/${empleado.id}" method="get">
+							<input type="hidden" name="_method" value="delete" >
+							<input type="submit" value="Eliminar">
+						</form>
+
+					</td>
 				</tr>
 				</c:forEach>
 			

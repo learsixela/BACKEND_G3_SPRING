@@ -7,8 +7,10 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.everis.data.models.Empleado;
 import com.everis.data.services.EmpleadoService;
@@ -41,18 +43,28 @@ public class EmpleadoController {
 		//llamado a guardar la entidad
 	
 		Empleado emp =  gato.insertarEmpleado(empleado);
-		return "empleado.jsp";
+		return "redirect:/empleado";
 	}
 	
-	@RequestMapping("/actualizar")
-	public String actualizar() {
-		return "empleado.jsp";
+	@RequestMapping(value="/actualizar/{id}", method = RequestMethod.GET)
+	public String actualizar(@PathVariable("id") Long id) {
+		System.out.println("actualizar id: "+ id);
+		return "redirect:/empleado";
 	}
 	
-	@RequestMapping("/eliminar")
-	public String eliminar() {
-		return "empleado.jsp";
+	@RequestMapping(value="/eliminar", method = RequestMethod.POST)
+	public String eliminar(@RequestParam("id") Long id) {
+		System.out.println("Eliminar id: "+ id);
+		return "redirect:/empleado";
 	}
+	
+	
+	@RequestMapping(value="/eliminar2/{id}", method = RequestMethod.DELETE)
+	public String eliminar2(@PathVariable("id") Long id) {
+		System.out.println("Eliminar2 id: "+ id);
+		return "redirect:/empleado";
+	}
+	
 	
 	@RequestMapping("/buscar")
 	public String buxcar() {
