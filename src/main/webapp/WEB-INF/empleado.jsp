@@ -60,6 +60,7 @@
 					<td><c:out value="${empleado.cargo}" /> </td>
 					<td>
 						<a href="/empleado/actualizar/${empleado.id}">Editar</a>
+						
 						<form action="/empleado/eliminar" method="POST">
 							<input type="hidden" name="id" value="<c:out value="${empleado.id}" />" >
 							<input type="submit" value="Eliminar">

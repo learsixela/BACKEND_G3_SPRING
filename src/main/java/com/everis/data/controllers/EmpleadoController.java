@@ -45,16 +45,32 @@ public class EmpleadoController {
 		Empleado emp =  gato.insertarEmpleado(empleado);
 		return "redirect:/empleado";
 	}
-	
+//METODO ACTUALIZAR	
 	@RequestMapping(value="/actualizar/{id}", method = RequestMethod.GET)
-	public String actualizar(@PathVariable("id") Long id) {
+	public String actualizar(@PathVariable("id") Long id, Model model) {
 		System.out.println("actualizar id: "+ id);
-		return "redirect:/empleado";
+		
+		Empleado empleado = gato.buscarEmpleado(id);
+		
+		model.addAttribute("empleado", empleado);
+		return "editar_empleado.jsp";
 	}
 	
+	@RequestMapping(value="/modificar",method= RequestMethod.PUT)
+	public String modificar(@Valid @ModelAttribute("empleado") Empleado empleado) {
+		
+		System.out.println("el Id a modificar es: "+empleado.getId());
+		gato.modificarEmpleado(empleado);
+		
+		return "redirect:/empleado";
+	}
+
+//METODOS ELIMINAR	
 	@RequestMapping(value="/eliminar", method = RequestMethod.POST)
 	public String eliminar(@RequestParam("id") Long id) {
 		System.out.println("Eliminar id: "+ id);
+		gato.eliminarEmpleado(id);
+		
 		return "redirect:/empleado";
 	}
 	
@@ -62,6 +78,8 @@ public class EmpleadoController {
 	@RequestMapping(value="/eliminar2/{id}", method = RequestMethod.DELETE)
 	public String eliminar2(@PathVariable("id") Long id) {
 		System.out.println("Eliminar2 id: "+ id);
+		gato.eliminarEmpleado(id);
+		
 		return "redirect:/empleado";
 	}
 	

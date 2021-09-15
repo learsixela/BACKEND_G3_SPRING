@@ -13,4 +13,5 @@ public interface EmpleadoRepository extends CrudRepository<Empleado,Long>{
 	//interaccion con la base datos
 	//metodos que heredaremos de otras clases (Crud y Jpa)
 	List<Empleado> findAll();
+
 }
