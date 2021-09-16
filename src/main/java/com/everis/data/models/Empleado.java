@@ -2,11 +2,14 @@ package com.everis.data.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -26,6 +29,10 @@ public class Empleado {
 	private Integer edad;
 	private String profesion;
 	private String cargo;
+	
+	//relacion 1 a 1
+	@OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Cuenta cuenta;
 	
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -103,6 +110,14 @@ public class Empleado {
 		this.cargo = cargo;
 	}
 	
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+	
     @PrePersist //se ejecuta antes de que sea insertado
     protected void onCreate(){
         this.createdAt = new Date();
@@ -111,4 +126,6 @@ public class Empleado {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+
+
 }

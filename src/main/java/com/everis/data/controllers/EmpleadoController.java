@@ -42,7 +42,7 @@ public class EmpleadoController {
 		System.out.println("crear "+ empleado);
 		//llamado a guardar la entidad
 	
-		Empleado emp =  gato.insertarEmpleado(empleado);
+		gato.insertarEmpleado(empleado);
 		return "redirect:/empleado";
 	}
 //METODO ACTUALIZAR	
