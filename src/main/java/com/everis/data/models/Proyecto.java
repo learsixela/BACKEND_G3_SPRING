@@ -43,10 +43,9 @@ public class Proyecto {
 		super();
 	}
 
-	public Proyecto(String nombre, List<Empleado> empleados) {
+	public Proyecto(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.empleados = empleados;
 	}
 
 	public Long getId() {

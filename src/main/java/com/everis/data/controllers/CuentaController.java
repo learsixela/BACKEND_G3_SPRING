@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.everis.data.models.Cuenta;
 import com.everis.data.models.Empleado;
-import com.everis.data.repositories.CuentaRepository;
 import com.everis.data.services.CuentaService;
 import com.everis.data.services.EmpleadoService;
 
