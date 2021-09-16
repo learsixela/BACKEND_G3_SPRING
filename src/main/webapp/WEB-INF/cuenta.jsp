@@ -31,6 +31,41 @@
 			<br>
 			<input type="submit" value="Crear Cuenta">
 		</form>
+<br>
+		<hr>
+		<h1>Lista Cuentas x Empleado</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Codigo</th>
+					<th>Estado</th>
+					<th>Empleado</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="cuenta" items="${lista_cuentas}" >
+				<tr>
+					<td><c:out value="${cuenta.id}" /> </td>
+					<td><c:out value="${cuenta.codigo}" /> </td>
+					<td><c:out value="${cuenta.estado}" /> </td>
+					<td><c:out value="${cuenta.empleado.nombre} ${cuenta.empleado.apellido}" /> </td>
+					<td>
+						<a href="/cuenta/actualizar/${cuenta.id}">Editar</a>
+						
+				
+						<form action="/cuenta/eliminar/${cuenta.id}" method="POST">
+							<input type="hidden" name="_method" value="delete" >
+							<input type="submit" value="Eliminar">
+						</form>
+
+					</td>
+				</tr>
+				</c:forEach>
+			
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>

@@ -26,6 +26,7 @@ public class CuentaController {
 	
 	@RequestMapping("")
 	public String inicio(Model model) {
+		model.addAttribute("lista_cuentas", cs.findAll());
 		model.addAttribute("lista_empleados", es.findAll());
 		model.addAttribute("empleado", new Empleado());
 		return "cuenta.jsp";

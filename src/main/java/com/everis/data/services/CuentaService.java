@@ -20,9 +20,9 @@ public class CuentaService {
 	}
 
 
-	public List<Cuenta> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Cuenta> findAll() {
+		
+		return cuentaRepository.findAll();
 	}
 
 
