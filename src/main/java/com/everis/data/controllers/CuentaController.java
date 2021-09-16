@@ -23,8 +23,6 @@ public class CuentaController {
 	@Autowired
 	private CuentaService cs;
 	
-	@Autowired
-	private CuentaRepository cuentaRepository; 
 	
 	@RequestMapping("")
 	public String inicio(Model model) {
