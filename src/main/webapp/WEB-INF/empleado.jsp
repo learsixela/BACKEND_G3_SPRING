@@ -29,7 +29,14 @@
 			
 			<form:label path="cargo">cargo:</form:label>
 			<form:input type="text" path="cargo"/><br>
-			
+			<br>
+			<label for="proyectos">Seleccione un Proyecto:</label>
+			<select name="proyecto">
+				<c:forEach var="proyecto" items="${lista_proyectos}" >
+					<option value="<c:out value="${proyecto.id}" />"> <c:out value="${proyecto.nombre}" /> <c:out value="${empleado.apellido}" /></option>
+				</c:forEach>
+			</select>
+			<br>
 			<input type="submit" value="Crear Empleado">
 		</form:form>
 		<br>
@@ -45,6 +52,7 @@
 					<th>Edad</th>
 					<th>Profesion</th>
 					<th>Cargo</th>
+					<th>Proyecto</th>
 					<th>Acciones</th>
 				</tr>
 			</thead>
@@ -58,6 +66,7 @@
 					<td><c:out value="${empleado.edad}" /> </td>
 					<td><c:out value="${empleado.profesion}" /> </td>
 					<td><c:out value="${empleado.cargo}" /> </td>
+					<td><c:out value="${empleado.proyecto.nombre}" /> </td>
 					<td>
 						<a href="/empleado/actualizar/${empleado.id}">Editar</a>
 						

@@ -31,7 +31,14 @@
 			
 			<form:label path="cargo">cargo:</form:label>
 			<form:input type="text" path="cargo"/><br>
-			
+						<br>
+			<label for="proyectos">Seleccione un Proyecto:</label>
+			<select name="proyecto">
+				<c:forEach var="proyecto" items="${lista_proyectos}" >
+					<option value="<c:out value="${proyecto.id}" />"> <c:out value="${proyecto.nombre}" /></option>
+				</c:forEach>
+			</select>
+			<br>
 			<input type="submit" value="Modificar Empleado">
 		</form:form>
 		
