@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -33,6 +35,11 @@ public class Empleado {
 	//relacion 1 a 1
 	@OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Cuenta cuenta;
+	
+	//relacion 1 a n
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="proyecto_id")
+	private Proyecto proyecto;
 	
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -126,6 +133,14 @@ public class Empleado {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+
+	public Proyecto getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
+	}
 
 
 }

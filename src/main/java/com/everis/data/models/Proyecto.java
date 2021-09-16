@@ -1,6 +1,7 @@
 package com.everis.data.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,19 +17,17 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="cuentas")
-public class Cuenta {
-	
-	@Id //clave primaria
-	@GeneratedValue(strategy = GenerationType.IDENTITY)//auto incrementar
+@Table(name="proyectos")
+public class Proyecto {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String codigo;
-	private String estado;
+	private String nombre;
 	
-	//relacion 1 a 1, donde este el JoinColumn se generara la FK
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="empleado_id")
-	private Empleado empleado;
+	//relacion one To many (1 a n)
+	@OneToMany(mappedBy = "proyecto",fetch = FetchType.LAZY)
+	private List<Empleado> empleados;
 	
 	//fechas
     @Column(updatable=false)
@@ -41,31 +39,26 @@ public class Cuenta {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
 
-	public Cuenta() {
+	public Proyecto() {
 		super();
 	}
 
-	public Cuenta(String codigo, String estado, Empleado empleado) {
+	public Proyecto(String nombre, List<Empleado> empleados) {
 		super();
-		this.codigo = codigo;
-		this.estado = estado;
-		this.empleado = empleado;
+		this.nombre = nombre;
+		this.empleados = empleados;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public String getEstado() {
-		return estado;
-	}
-
-	public Empleado getEmpleado() {
-		return empleado;
+	public List<Empleado> getEmpleados() {
+		return empleados;
 	}
 
 	public Date getCreatedAt() {
@@ -80,16 +73,12 @@ public class Cuenta {
 		this.id = id;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public void setEmpleado(Empleado empleado) {
-		this.empleado = empleado;
+	public void setEmpleados(List<Empleado> empleados) {
+		this.empleados = empleados;
 	}
 
 	public void setCreatedAt(Date createdAt) {
@@ -99,5 +88,5 @@ public class Cuenta {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
+    
 }
