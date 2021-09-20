@@ -38,10 +38,10 @@ public class UserController {
 			User user = userService.findByEmail(email);
 			//guardando un elemento en session
 			session.setAttribute("userId", user.getId());
+			return "home.jsp";
 		}
 		
-		
-		return "";
+		return "redirect:/login";
 	}
 	
 	@RequestMapping("/registrar")
@@ -57,8 +57,17 @@ public class UserController {
 		if(session.getAttribute("userId")!=null) {
 			return "home.jsp";
 		}
-		return "redirect:/ligin";
+		return "redirect:/login";
 		
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		if(session.getAttribute("userId")!=null) {
+			session.invalidate();//matamos todas las variables de session
+		}
+		return "redirect:/login";
 	}
 	
 	
