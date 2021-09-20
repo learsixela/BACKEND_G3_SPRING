@@ -35,7 +35,9 @@ public class UserController {
 			) {
 		boolean exiteUsuario = userService.validarUser(email, password);
 		if(exiteUsuario) {
-			
+			User user = userService.findByEmail(email);
+			//guardando un elemento en session
+			session.setAttribute("userId", user.getId());
 		}
 		
 		
@@ -48,6 +50,17 @@ public class UserController {
 		userService.save(user);
 		return "redirect:/login";
 	}
+	
+	@RequestMapping("/home")
+	public String home(HttpSession session){
+		//valida el acceso a rutas
+		if(session.getAttribute("userId")!=null) {
+			return "home.jsp";
+		}
+		return "redirect:/ligin";
+		
+	}
+	
 	
 
 }
