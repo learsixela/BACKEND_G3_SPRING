@@ -45,7 +45,6 @@ public class Empleado {
 	private Proyecto proyecto;
 	
 	//relacion n a m
-	//tabla intermedia
 	//JoinTable-> name; joincolumns; inverseJoinColumns
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="categorias_empleados",
