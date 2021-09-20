@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="roles")
-public class Rol {
+public class Role {
 	
 	@Id
     @GeneratedValue
@@ -19,12 +19,12 @@ public class Rol {
     @ManyToMany(mappedBy = "roles")
     private List<User> usuarios;
     
-	public Rol(String name) {
+	public Role(String name) {
 		super();
 		this.name = name;
 	}
 
-	public Rol() {
+	public Role() {
 		super();
 	}
 

@@ -2,9 +2,12 @@ package com.everis.data.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.everis.data.models.User;
 
 
 @Controller
@@ -12,7 +15,7 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String index() {
-		return "index.jsp";
+		return "login.jsp";
 	}
 	
 	//pasar parametro desde el backend al frontend (Model model)
