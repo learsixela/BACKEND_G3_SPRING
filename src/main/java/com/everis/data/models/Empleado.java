@@ -1,6 +1,7 @@
 package com.everis.data.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -40,6 +43,15 @@ public class Empleado {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="proyecto_id")
 	private Proyecto proyecto;
+	
+	//relacion n a m
+	//tabla intermedia
+	//JoinTable-> name; joincolumns; inverseJoinColumns
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="categorias_empleados",
+	joinColumns = @JoinColumn(name="empleado_id"),
+	inverseJoinColumns =  @JoinColumn(name="categoria_id"))
+	private List<Categoria> categorias;
 	
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -140,6 +152,14 @@ public class Empleado {
 
 	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 

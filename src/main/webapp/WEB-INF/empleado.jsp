@@ -30,10 +30,17 @@
 			<form:label path="cargo">cargo:</form:label>
 			<form:input type="text" path="cargo"/><br>
 			<br>
-			<label for="proyectos">Seleccione un Proyecto:</label>
+			<label for="proyecto">Seleccione un Proyecto:</label>
 			<select name="proyecto">
 				<c:forEach var="proyecto" items="${lista_proyectos}" >
-					<option value="<c:out value="${proyecto.id}" />"> <c:out value="${proyecto.nombre}" /> <c:out value="${empleado.apellido}" /></option>
+					<option value="<c:out value="${proyecto.id}" />"> <c:out value="${proyecto.nombre}" /> </option>
+				</c:forEach>
+			</select>
+			<br>
+			<label for="categorias">Seleccione Categorias:</label>
+			<select name="categorias" multiple>
+				<c:forEach var="categoria" items="${lista_categorias}" >
+					<option value="<c:out value="${categoria.id}" />"> <c:out value="${categoria.nombre}" /> </option>
 				</c:forEach>
 			</select>
 			<br>
@@ -67,6 +74,7 @@
 					<td><c:out value="${empleado.profesion}" /> </td>
 					<td><c:out value="${empleado.cargo}" /> </td>
 					<td><c:out value="${empleado.proyecto.nombre}" /> </td>
+					<td></td>
 					<td>
 						<a href="/empleado/actualizar/${empleado.id}">Editar</a>
 						

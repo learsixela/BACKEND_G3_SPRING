@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.everis.data.models.Empleado;
+import com.everis.data.services.CategoriaService;
 import com.everis.data.services.EmpleadoService;
 import com.everis.data.services.ProyectoService;
 
@@ -33,6 +34,9 @@ public class EmpleadoController {
 	@Autowired
 	private ProyectoService proyectoService;
 	
+	@Autowired
+	private CategoriaService categoriaService;
+	
 //@ModelAttribute("empleado") Empleado empleado, ejemplo pasar entidad a un jsp
 	@RequestMapping("")
 	public String index(@ModelAttribute("empleado") Empleado empleado,Model model ) {
@@ -41,6 +45,7 @@ public class EmpleadoController {
 		List<Empleado> lista_empleados = gato.findAll();
 		model.addAttribute("lista_empleados", lista_empleados);
 		model.addAttribute("lista_proyectos", proyectoService.findAll());
+		model.addAttribute("lista_categorias", categoriaService.findAll());
 		
 		return "empleado.jsp";
 	}
@@ -62,6 +67,7 @@ public class EmpleadoController {
 		
 		model.addAttribute("empleado", empleado);
 		model.addAttribute("lista_proyectos", proyectoService.findAll());
+		model.addAttribute("lista_categorias", categoriaService.findAll());
 		return "editar_empleado.jsp";
 	}
 	

@@ -39,6 +39,13 @@
 				</c:forEach>
 			</select>
 			<br>
+			<label for="categorias">Seleccione Categorias:</label>
+			<select name="categorias" multiple>
+				<c:forEach var="categoria" items="${lista_categorias}" >
+					<option value="<c:out value="${categoria.id}" />"> <c:out value="${categoria.nombre}" /> </option>
+				</c:forEach>
+			</select>
+			<br>
 			<input type="submit" value="Modificar Empleado">
 		</form:form>
 		
