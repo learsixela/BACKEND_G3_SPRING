@@ -48,7 +48,7 @@ public class UserController {
 	public String registrar(@Valid @ModelAttribute("user") User user) {
 		//llamar a las validaciones
 		userService.save(user);
-		return "redirect:/login";
+		return "login.jsp";
 	}
 	
 	@RequestMapping("/home")

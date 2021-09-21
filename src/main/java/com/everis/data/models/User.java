@@ -1,17 +1,11 @@
 package com.everis.data.models;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.management.relation.Role;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -41,13 +35,7 @@ public class User {
     @UpdateTimestamp
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "users_roles", 
-        joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+   
 
 	public User() {
 		super();
@@ -89,10 +77,6 @@ public class User {
 		return updatedAt;
 	}
 
-	public List<Role> getRoles() {
-		return roles;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -120,10 +104,5 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-    
     
 }

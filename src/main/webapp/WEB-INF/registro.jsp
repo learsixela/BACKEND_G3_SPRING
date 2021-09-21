@@ -13,7 +13,7 @@
     
     <p><form:errors path="user.*"/></p>
     
-    <form:form method="POST" action="/registro" modelAttribute="user">
+    <form:form method="POST" action="/registrar" modelAttribute="user">
     	<p>
             <form:label path="nombre">nombre:</form:label>
             <form:input type="text" path="nombre"/>
